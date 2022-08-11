@@ -1,6 +1,6 @@
 # RentBlog Project
 
-## A Management Project
+## A Rent Management Project
 
 ## Technologies Used
 
