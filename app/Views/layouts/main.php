@@ -69,9 +69,9 @@
         <!-- Right elements -->
         <div class="d-flex align-items-center">
         <!-- Icon -->
-        <a class="text-reset me-3" href="#">
+        <!-- <a class="text-reset me-3" href="#">
             <i class="fas fa-shopping-cart"></i>
-        </a>
+        </a> -->
 
         <!-- Notifications -->
         <div class="dropdown">
@@ -134,7 +134,24 @@
     <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-
+    <?php if(isset($breadcrumb) ) { ?>
+        <!-- Heading -->
+        <div class="p-5 bg-light mb-4">
+            <h1 class=""><?php echo $breadcrumb['heading']; ?></h1>
+            <!-- Breadcrumb -->
+            <nav class="d-flex">
+            <h6 class="mb-0">
+                <a href="" class="text-reset">Home</a>
+                <span>/</span>
+                <a href="" class="text-reset">Analytics</a>
+                <span>/</span>
+                <a href="" class="text-reset"><u>Dashboard</u></a>
+            </h6>
+            </nav>
+            <!-- Breadcrumb -->
+        </div>
+        <!-- Heading -->
+    <?php } ?>
     <?php echo $this->renderSection('body'); ?>
 
     <!-- Footer -->

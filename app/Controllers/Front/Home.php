@@ -7,6 +7,8 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('front/index');
+        return view('front/index', [
+            'breadcrumb'=> ['heading'=>'Dash-board']
+        ]);
     }
 }
