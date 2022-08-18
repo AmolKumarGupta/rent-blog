@@ -23,6 +23,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'isLoggedIn'    => \App\Filters\Auth::class
     ];
 
     /**
@@ -36,6 +37,7 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
+            'isLoggedIn'=> ['except'=> ['api/*','login*', 'register', 'auth/*']]
         ],
         'after' => [
             'toolbar',

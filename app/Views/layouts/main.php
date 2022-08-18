@@ -124,7 +124,7 @@
                 <a class="dropdown-item" href="#">Settings</a>
             </li>
             <li>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" href="<?php echo base_url('logout'); ?>">Logout</a>
             </li>
             </ul>
         </div>
