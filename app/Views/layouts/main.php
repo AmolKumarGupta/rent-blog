@@ -134,24 +134,11 @@
     <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    <?php if(isset($breadcrumb) ) { ?>
-        <!-- Heading -->
-        <div class="p-5 bg-light mb-4">
-            <h1 class=""><?php echo $breadcrumb['heading']; ?></h1>
-            <!-- Breadcrumb -->
-            <nav class="d-flex">
-            <h6 class="mb-0">
-                <a href="" class="text-reset">Home</a>
-                <span>/</span>
-                <a href="" class="text-reset">Analytics</a>
-                <span>/</span>
-                <a href="" class="text-reset"><u>Dashboard</u></a>
-            </h6>
-            </nav>
-            <!-- Breadcrumb -->
-        </div>
-        <!-- Heading -->
-    <?php } ?>
+    <?php 
+    if(isset($breadcrumb) ) {
+        $breadcrumb->render();
+    } 
+    ?>
     <?php echo $this->renderSection('body'); ?>
 
     <!-- Footer -->
