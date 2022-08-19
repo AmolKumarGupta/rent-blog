@@ -139,6 +139,7 @@
         $breadcrumb->render();
     } 
     ?>
+
     <?php echo $this->renderSection('body'); ?>
 
     <!-- Footer -->

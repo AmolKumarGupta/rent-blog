@@ -6,18 +6,7 @@ class Breadcrumb
 {
     private string $heading;
     private array $crumb;
-    private string $template = '<!-- Heading -->
-                                <div class="p-5 bg-light mb-4">
-                                    <h1 class="">{{HEADING}}</h1>
-                                    <!-- Breadcrumb -->
-                                    <nav class="d-flex">
-                                    <h6 class="mb-0">
-                                        {{CRUMBS}}
-                                    </h6>
-                                    </nav>
-                                    <!-- Breadcrumb -->
-                                </div>
-                                <!-- Heading -->';
+    private string $template = '<!-- Heading --><div class="p-5 bg-light mb-4"><h1 class="">{{HEADING}}</h1><!-- Breadcrumb --><nav class="d-flex"><h6 class="mb-0">{{CRUMBS}}</h6></nav><!-- Breadcrumb --></div><!-- Heading -->';
 
     public function __construct(string $heading="Dashboard", array $crumb=null ) 
     {
