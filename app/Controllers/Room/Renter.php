@@ -9,6 +9,9 @@ class Renter extends BaseController
 {
     public function info($id)
     {
+        $roomName = 'Left-sided Room';
+
+        
         $faker = \Faker\Factory::create();
         $data = [
             'name'=> $faker->name(),
@@ -18,7 +21,6 @@ class Renter extends BaseController
             'note'=> $faker->text()
         ];
 
-        $roomName = 'Left-sided Room';
         $breadcrumb = new Breadcrumb($data['name'], [
             'Room'=> '/',
             $roomName=> 'rooms/'.$id,

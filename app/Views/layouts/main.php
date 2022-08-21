@@ -18,6 +18,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="<?php echo asset('css/mdb.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('css/style.css'); ?>">
 
     <script src="<?php echo asset('js/mdb.min.js') ; ?>"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -60,7 +61,7 @@
             <a class="nav-link" href="#">Analysis</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Projects</a>
+            <a class="nav-link" href="#">Setting</a>
             </li>
         </ul>
         <!-- Left links -->

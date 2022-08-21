@@ -108,6 +108,11 @@
         const fd = new FormData(form);
         const data = Object.fromEntries(fd.entries());
         console.table(data);
+
+        $('[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...');
+        setTimeout(() => {
+            $('[type=submit]').text('Save changes');
+        }, 5000);
     });
     /* submiting form */
 </script>
