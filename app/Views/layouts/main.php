@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<?php echo asset('css/mdb.min.css'); ?>">
 
     <script src="<?php echo asset('js/mdb.min.js') ; ?>"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -43,20 +44,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Navbar brand -->
         <a class="navbar-brand mt-2 mt-lg-0" href="#">
-            <!-- <img
-            src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-            height="15"
-            alt="MDB Logo"
+            <img
+            src="<?php echo asset('../favicon.ico'); ?>"
+            height="30"
+            alt="Logo"
             loading="lazy"
-            /> -->
+            />
         </a>
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
+            <a class="nav-link" href="<?php echo base_url('/'); ?>">Dashboard</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Team</a>
+            <a class="nav-link" href="#">Analysis</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#">Projects</a>

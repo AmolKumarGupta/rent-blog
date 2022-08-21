@@ -1,7 +1,7 @@
 <?php
 
 namespace Config;
-
+use App\Controllers\Room;
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -36,6 +36,8 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Front\Home::index');
+$routes->get('rooms/(:num)', [Room\Room::class, 'index']);
+$routes->get('rooms/(:num)/info', [Room\Renter::class,'info']);
 
 
 

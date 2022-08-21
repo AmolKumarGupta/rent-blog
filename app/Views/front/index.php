@@ -1,8 +1,9 @@
 <?php echo $this->extend('layouts/main'); ?>
 <?php echo $this->section('body'); ?>
 <!-- ----------------------------------------------------------------- -->
-
-<h1>this is a Front page oh ho.</h1>
+<div class="container-fluid">
+    <h1>this is a Front page oh ho.</h1>
+</div>
 
 <!-- ----------------------------------------------------------------- -->
 <?php echo $this->endSection(); ?>
