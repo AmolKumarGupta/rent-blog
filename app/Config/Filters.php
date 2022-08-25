@@ -23,7 +23,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'isLoggedIn'    => \App\Filters\Auth::class
+        'isLoggedIn'    => \App\Filters\Auth::class,
+        'isAdmin'    => \App\Filters\Admin::class
     ];
 
     /**
@@ -75,6 +76,9 @@ class Filters extends BaseConfig
             'before' => [
                 'login*', 'register', 'auth/*'
             ]
+        ],
+        'isAdmin' => [
+            'before' => ['admin/*']
         ]
     ];
 }

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="<?php echo asset('css/mdb.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('css/style.css'); ?>">
 
-    <script src="<?php echo asset('js/mdb.min.js') ; ?>"></script>
+    <script src="<?php echo asset('js/mdb.min.js') ; ?>" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -60,9 +60,13 @@
             <li class="nav-item">
             <a class="nav-link" href="#">Analysis</a>
             </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Setting</a>
-            </li>
+
+            <?php if(auth()->user()->inGroup('superadmin')) { ?>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Setting</a>
+                </li>
+            <?php } ?>
+            
         </ul>
         <!-- Left links -->
         </div>

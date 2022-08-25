@@ -35,16 +35,28 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+
 $routes->get('/', 'Front\Home::index');
 $routes->get('rooms/(:num)', [Room\Room::class, 'index']);
 $routes->get('rooms/(:num)/info', [Room\Renter::class,'info']);
 
 
+/* ADMIN */
+$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], static function($routes){
+    $routes->get('settings', 'Setting\Setting');
+    $routes->get('settings/rooms', 'Setting\Room', ['as' => 'setting_room']);
 
+    $routes->post('rooms/create', 'Setting\Room::create', ['as' => 'create_room']);
+});
+/* ADMIN */
+
+/* DEV */
 $routes->group('dev', ['namespace' => 'App\Controllers\Dev'], static function($routes){
-    $routes->get('/', 'Test');
+    $routes->get('/', 'Test');    
 });
 service('auth')->routes($routes);
+/* DEV */
 
 /*
  * --------------------------------------------------------------------
