@@ -5,7 +5,7 @@
     <div class="row">
         <?php
             $id=1;
-            $arr = ['danger', 'primary', 'success', 'info'];
+            $arr = ['danger', 'primary', 'success'];
             foreach($arr as $i){
         ?>
         <div class="col-12 col-sm-6 col-xl-3 mb-3">

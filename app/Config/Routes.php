@@ -44,10 +44,12 @@ $routes->get('rooms/(:num)/info', [Room\Renter::class,'info']);
 
 /* ADMIN */
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], static function($routes){
-    $routes->get('settings', 'Setting\Setting');
+    $routes->get('settings', 'Setting\Setting', ['as' => 'site_setting']);
     $routes->get('settings/rooms', 'Setting\Room', ['as' => 'setting_room']);
 
-    $routes->post('rooms/create', 'Setting\Room::create', ['as' => 'create_room']);
+    $routes->get('rooms/create', 'Setting\Room::create', ['as' => 'create_room']);
+    $routes->post('rooms/delete', 'Setting\Room::delete', ['as' => 'delete_room']);
+    $routes->post('rooms/edit', 'Setting\Room::update', ['as' => 'update_room']);
 });
 /* ADMIN */
 
