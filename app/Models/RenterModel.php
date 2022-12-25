@@ -14,7 +14,14 @@ class RenterModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        "name",
+        "phone_no",
+        "occupation",
+        "note",
+        "status",
+        "rating",
+    ];
 
     // Dates
     protected $useTimestamps = true;

@@ -41,15 +41,22 @@ $routes->get('/', 'Front\Home::index');
 $routes->get('rooms/(:num)', [Room\Room::class, 'index']);
 $routes->get('rooms/(:num)/info', [Room\Renter::class,'info']);
 
+$routes->get('renters/(:num)', [Room\Renter::class, 'info'], ['as' => 'renter_info']);
+$routes->post('renters/(:num)', [Room\Renter::class, 'update'], ['as' => 'renter.info.update']);
 
 /* ADMIN */
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], static function($routes){
     $routes->get('settings', 'Setting\Setting', ['as' => 'site_setting']);
-    $routes->get('settings/rooms', 'Setting\Room', ['as' => 'setting_room']);
 
+    $routes->get('settings/rooms', 'Setting\Room', ['as' => 'setting_room']);
     $routes->get('rooms/create', 'Setting\Room::create', ['as' => 'create_room']);
     $routes->post('rooms/delete', 'Setting\Room::delete', ['as' => 'delete_room']);
     $routes->post('rooms/edit', 'Setting\Room::update', ['as' => 'update_room']);
+
+    $routes->get('settings/renters', 'Setting\Renter', ['as' => 'setting_renters']);
+    $routes->post('renters/create', 'Setting\Renter::create', ['as' => 'create_renter']);
+    $routes->post('renters/edit', 'Setting\Renter::update', ['as' => 'update_renter']);
+    $routes->post('renters/delete', 'Setting\Renter::delete', ['as' => 'delete_renter']);
 });
 /* ADMIN */
 

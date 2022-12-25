@@ -77,8 +77,8 @@ class Filters extends BaseConfig
                 'login*', 'register', 'auth/*'
             ]
         ],
-        'isAdmin' => [
-            'before' => ['admin/*']
-        ]
+        // 'isAdmin' => [
+        //     'before' => ['admin/*']
+        // ]
     ];
 }

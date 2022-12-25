@@ -17,6 +17,9 @@
         "ext-fileinfo": "Improves mime type detection for files"
     },
     "autoload": {
+        "psr-4": {
+            "RentBlog\\": "rentblog/"
+        },
         "exclude-from-classmap": [
             "**/Database/Migrations/**"
         ]
