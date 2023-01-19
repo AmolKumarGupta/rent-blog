@@ -158,5 +158,21 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
+    <script>
+        function post(url, data, cb_success=(res)=>{}, cb_err=(xhr)=>{}) {
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: data,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    '<?php echo csrf_header(); ?>': '<?php echo csrf_hash(); ?>'
+                },
+                success: function(res) { cb_success(res); },
+                error: function(xhr) { cb_err(xhr); }
+            })
+        }
+    </script>
+    <script src="<?php echo asset('js/script.js') ; ?>" defer></script>
 </body>
 </html>

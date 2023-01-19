@@ -45,8 +45,13 @@ $routes->get('renters/(:num)', [Room\Renter::class, 'info'], ['as' => 'renter_in
 $routes->post('renters/(:num)', [Room\Renter::class, 'update'], ['as' => 'renter.info.update']);
 
 /* ADMIN */
-$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], static function($routes){
-    $routes->get('settings', 'Setting\Setting', ['as' => 'site_setting']);
+$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], static function ($routes) {
+    $routes->get('settings', 'Setting', ['as' => 'site_setting']);
+    $routes->addRedirect('', 'site_setting');
+    
+    // setting ajax 
+    $routes->match(['get', 'post'], 'settings/ajax', 'Setting::ajax', ['as' => 'ajax.settings']);
+    $routes->post('change-room', 'Setting::changeRoom', ['as' => 'change.room']);
 
     $routes->get('settings/rooms', 'Setting\Room', ['as' => 'setting_room']);
     $routes->get('rooms/create', 'Setting\Room::create', ['as' => 'create_room']);

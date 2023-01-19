@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "78bcb71b4e9bd40db3a0f55d8df40829",
+    "content-hash": "e8e630dee1c18f2c18c44c9e2bed9602",
     "packages": [
+        {
+            "name": "amol/reactiveci4",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AmolKumarGupta/ReactiveCi4.git",
+                "reference": "047c926acb4ea483f95f953a4dfe2b54214f053a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AmolKumarGupta/ReactiveCi4/zipball/047c926acb4ea483f95f953a4dfe2b54214f053a",
+                "reference": "047c926acb4ea483f95f953a4dfe2b54214f053a",
+                "shasum": ""
+            },
+            "require-dev": {
+                "codeigniter4/devkit": "dev-develop",
+                "codeigniter4/framework": "^4.2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amol\\ReactiveCi4\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "amol",
+                    "email": "amlo1232001@gmail.com"
+                }
+            ],
+            "description": "Activity logger for Codeigniter 4",
+            "homepage": "https://github.com/AmolKumarGupta/ReactiveCi4/",
+            "keywords": [
+                "activity",
+                "codeigniter",
+                "codeigniter4",
+                "log",
+                "reactive"
+            ],
+            "support": {
+                "issues": "https://github.com/AmolKumarGupta/ReactiveCi4/issues",
+                "source": "https://github.com/AmolKumarGupta/ReactiveCi4/tree/v1.0.2"
+            },
+            "time": "2022-12-17T19:36:37+00:00"
+        },
         {
             "name": "codeigniter4/framework",
             "version": "v4.2.3",

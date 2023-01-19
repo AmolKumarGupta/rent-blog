@@ -1,1 +1,35 @@
+.alert-float {
+    position: fixed;
+    z-index: 99999;
+    animation: alertfloat 3s;
+}
+
+@keyframes alertfloat {
+    from {
+        top: -100%;
+        right: -100%;
+        opacity: 0;
+    }
+    25% {
+        top: 5rem;
+        right: 1rem;
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.c-p {cursor: pointer;}
+.c-grab {cursor: grab;}
 .hover-underlined:hover{text-decoration: underline;}
+.min-w-25 {min-width: 25%;}
+.rb-fw-500 {font-weight: 500;}
+
+.select-border-none, .select-border-none:focus, .select-border-none:focus-within, .select-border-none:focus-visible {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.w-fit {width: fit-content;}
