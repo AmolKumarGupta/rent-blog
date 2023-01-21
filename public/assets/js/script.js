@@ -15,6 +15,7 @@ function renderTable(ele) {
         url + `/ajax?table=${table}`,
         {},
         (res) => {
+            $(ele).html("");
             $(ele).html(res);
             cb ? window[cb]() : null;
         }

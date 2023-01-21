@@ -25,8 +25,21 @@ class Setting extends BaseController
     public function changeRoom() {
         service('response');
         $req = service('request');
+        $req = $req->getPost();
 
-        return $this->response->setJson($req->getPost());
+        $roomId = $req['room'];
+        $renterId = $req['renter']!='0' ? $req['renter'] : null;
+
+        if ($this->rooms->update($roomId, ["renter_id" => $renterId])) {
+            return $this->response->setJson([
+                "status" => 200
+            ]);
+        }
+        
+        return $this->response->setJson([
+            "status" => 500
+        ], 500);
+
     }
 
     public function ajax() {
@@ -50,7 +63,7 @@ class Setting extends BaseController
         $rooms = $rooms->getResultArray();
 
         $renterData = ["0" => "No Selected"] + renters_not_rented();
-
-        return view('templates/table/renter_room', compact('rooms', 'renterData'));
+        $tuid = "table_renter_room";
+        return view('templates/table/renter_room', compact('tuid', 'rooms', 'renterData'));
     }
 }
