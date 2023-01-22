@@ -63,7 +63,7 @@
 
             <?php if(auth()->user()->inGroup('superadmin')) { ?>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Setting</a>
+                <a class="nav-link" href="<?php echo url_to('site_setting'); ?>">Setting</a>
                 </li>
             <?php } ?>
             
