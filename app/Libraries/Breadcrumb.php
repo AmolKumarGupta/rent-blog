@@ -29,7 +29,7 @@ class Breadcrumb
         $crumbs = '';
         $last = array_key_last($this->crumb);
         foreach($this->crumb as $key=> $link) {
-            $crumbs .= '<a href="'.base_url($link).'" class="text-reset">'.$key.'</a>';
+            $crumbs .= '<a href="'.($link ? base_url($link) : "javascript:void(0);").'" class="text-reset">'.$key.'</a>';
             if($key != $last) {
                 $crumbs .= '<span> / </span>';
             }

@@ -24,4 +24,17 @@ class Room extends BaseController
 
         return view('rooms/room', compact('breadcrumb', 'time', 'preTime'));
     }
+
+    public function history($id) {
+        $roomModel = model('RoomModel');
+        $room = $roomModel->find($id);
+        
+        $roomName = ucwords($room['name']);
+        $breadcrumb = new Breadcrumb($roomName, [
+            $roomName=> 'rooms/'.$id,
+            'History'=> '',
+        ]);
+
+        return view('rooms/history', compact('breadcrumb'));
+    }
 }

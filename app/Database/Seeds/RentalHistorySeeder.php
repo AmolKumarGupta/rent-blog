@@ -10,11 +10,11 @@ class RentalHistorySeeder extends Seeder
     {
         $data = [
             [
-                "name"          => "room charges",
+                "name"          => "room rent",
                 "description"   => "charges that renters pay every month"
             ],
             [
-                "name" => "electricity charges",
+                "name" => "electricity bill",
                 "description"   => ""
             ]
         ];
