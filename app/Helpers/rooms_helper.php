@@ -10,4 +10,16 @@ if (! function_exists('getEmptyRooms')) {
         return $res;
     }
 }
+
+if (! function_exists('room_rent')) {
+    function room_rent ($room_id) {
+        $roomModel = model('RoomModel');
+        $row = $roomModel->find($room_id);
+
+        if ($row) {
+            return $row['price'];
+        }
+        return null;
+    }
+}
 ?>

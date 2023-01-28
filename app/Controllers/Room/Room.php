@@ -8,8 +8,12 @@ use CodeIgniter\I18n\Time;
 
 class Room extends BaseController
 {
-    public function index($id)
-    {
+    public function __construct() {
+        helper('chargetype');
+        helper('rooms');
+    }
+
+    public function index($id) {
         $roomModel = model('RoomModel');
         $room = $roomModel->find($id);
         
@@ -35,6 +39,17 @@ class Room extends BaseController
             'History'=> '',
         ]);
 
-        return view('rooms/history', compact('breadcrumb'));
+        $current_room_renter_id = $room['renter_id'];
+        $time = Time::now();
+        $list_of_months = config('Calender')->months;
+        $room_rent = room_rent($id);
+
+        return view('rooms/history', compact('id', 'current_room_renter_id', 'breadcrumb', 'list_of_months', 'time', 'room_rent'));
+    }
+
+    public function savehistory() {
+        $request = service('request');
+
+        dd( $request->getPost() );
     }
 }

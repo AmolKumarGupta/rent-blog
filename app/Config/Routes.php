@@ -42,6 +42,7 @@ $routes->get('rooms/(:num)', [Room\Room::class, 'index']);
 $routes->get('rooms/(:num)/info', [Room\Renter::class,'info']);
 
 $routes->get('rooms/(:num)/history', [Room\Room::class,'history']);
+$routes->post('rooms/(:num)/history', [Room\Room::class,'savehistory'], ['as' => 'save.history']);
 
 $routes->get('renters/(:num)', [Room\Renter::class, 'info'], ['as' => 'renter_info']);
 $routes->post('renters/(:num)', [Room\Renter::class, 'update'], ['as' => 'renter.info.update']);
