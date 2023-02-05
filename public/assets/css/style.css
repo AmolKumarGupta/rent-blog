@@ -11,7 +11,7 @@
         opacity: 0;
     }
     25% {
-        top: 5rem;
+        top: 1rem;
         right: 1rem;
         opacity: 1;
     }
@@ -22,6 +22,13 @@
 
 .c-p {cursor: pointer;}
 .c-grab {cursor: grab;}
+.c-stop {cursor: not-allowed;}
+button:disabled, button[disabled] {
+    pointer-events: unset !important;
+    cursor: not-allowed !important;
+}
+
+
 .hover-underlined:hover{text-decoration: underline;}
 .min-w-25 {min-width: 25%;}
 .rb-fw-500 {font-weight: 500;}

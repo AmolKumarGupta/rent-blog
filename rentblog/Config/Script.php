@@ -1,6 +1,5 @@
 <?php
 namespace RentBlog\Config;
-
 use CodeIgniter\Config\BaseConfig;
 
 class Script extends BaseConfig

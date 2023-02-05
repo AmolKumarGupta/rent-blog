@@ -26,7 +26,8 @@ class Renter extends BaseController
 
         return view('rooms/renter', [
             'breadcrumb'=> $breadcrumb,
-            'data'=> $data
+            'data'=> $data,
+            'id' => $id
         ]);
     }
 

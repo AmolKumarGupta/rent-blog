@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="w-100">
             <h4 class="d-inline">This month, <?php echo $time->format('F Y'); ?></h4>
-            <div class="d-inline float-end "><a href="#" class="text-grayish">view all</a></div>
+            <div class="d-inline float-end "><a href="<?php echo url_to('room.history', $id); ?>" class="text-grayish">view all</a></div>
         </div>
     </div>
 

@@ -4,6 +4,7 @@ namespace App\Controllers\Room;
 
 use App\Controllers\BaseController;
 use App\Libraries\Breadcrumb;
+use App\Libraries\Ssp;
 use CodeIgniter\I18n\Time;
 
 class Room extends BaseController
@@ -26,7 +27,7 @@ class Room extends BaseController
             $roomName=> 'rooms/'.$id,            
         ]);
 
-        return view('rooms/room', compact('breadcrumb', 'time', 'preTime'));
+        return view('rooms/room', compact('id', 'breadcrumb', 'time', 'preTime'));
     }
 
     public function history($id) {
@@ -48,8 +49,119 @@ class Room extends BaseController
     }
 
     public function savehistory() {
-        $request = service('request');
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'paid' => ['required', 'numeric']
+        ]);
 
-        dd( $request->getPost() );
+        if ($validation->withRequest($this->request)->run()) {
+            $post =  $this->request->getPost();
+
+            $post['total_charges'] = match ($post['charge_type_id']) {
+                "1" => $post['fake_room_rent'],
+                "2" => $post['fake_electric_bill']
+            };
+            unset($post['fake_room_rent']);
+            unset($post['fake_electric_bill']);
+            
+            $rentalHistoryModel = model('RentalHistory');
+            if ( $rentalHistoryModel->insert($post, false) )
+            {
+                return $this->response->setJson(["status" => 200]);
+            }
+            return $this->response->setStatusCode(500)->setJson(["err" => "Something went wrong"]);
+
+        }else {
+            return $this->response
+                        ->setStatusCode(400)
+                        ->setJson( $validation->getErrors() );
+        }
+    }
+
+    public function ajax() {
+        $req = service('request');
+        $data = $req->getGet();
+        $prefix = key($data);
+        $label = $data[$prefix];
+        $func = $prefix . '_' . $label;
+        return $this->$func();
+    }
+
+    public function datatable_rooms() {
+        $time = Time::now();
+        $months = config('Calender')->months;
+        $id = $this->request->getGet('renter_id');
+
+        $table = 'rental_history';
+        $primaryKey = 'id';
+
+        $columns = array(
+            array( 
+                'db' => '`rental_history`.`month`', 
+                'dt' => 0 ,
+                "formatter" => function($d, $row) use($months) {
+                    return $months[ $row['month'] ]." ".$row['year'];
+                },
+                'field' => 'month'
+            ),
+            array( 
+                'db' => '`renters`.`name`',
+                'dt' => 1 ,
+                'as'    => 'renter_name',
+                'field' => 'renter_name'
+            ),
+            array( 
+                'db' => '`charge_type`.`name`', 
+                'dt' => 2,
+                'as'    => 'charge_type_name',
+                'field' => 'charge_type_name'
+            ),
+            array( 
+                'db' => '`rental_history`.`paid`', 
+                'dt' => 3,
+                'field' => 'paid'
+            ),
+            array( 
+                'db' => '`rental_history`.`total_charges`', 
+                'dt' => 4,
+                'field' => 'total_charges'
+            ),
+            array( 
+                'db' => '`rental_history`.`created_at`', 
+                'dt' => 5,
+                "formatter" => function ($d) {
+                    return (new Time($d))->toLocalizedString('d MMMM yyyy');
+                },
+                'field' => 'created_at'
+            ),
+
+            array( 
+                'db' => '`rental_history`.`year`', 
+                'dt' => 6,
+                'field' => 'year'
+            ),
+        );
+
+        $joinQuery = "
+        FROM `rental_history` 
+        LEFT JOIN `renters` ON (`renters`.`id` = `rental_history`.`renter_id`) 
+        LEFT JOIN `charge_type` ON (`charge_type`.`id` = `rental_history`.`charge_type_id`) 
+        ";
+
+        $extraCondition = "
+            `rental_history`.`deleted_at` is null AND 
+            `renters`.`deleted_at` is null AND 
+            `charge_type`.`deleted_at` is null AND
+            `rental_history`.`room_id`=$id
+        ";
+        
+        $sql_details = array(
+            'user' => env('database.default.username'),
+            'pass' => env('database.default.password'),
+            'db'   => env('database.default.database'),
+            'host' => env('database.default.hostname')
+        );
+        
+        return $this->response->setJson( Ssp::simple( $_GET, $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraCondition ) );
     }
 }

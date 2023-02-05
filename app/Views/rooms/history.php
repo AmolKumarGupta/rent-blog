@@ -16,9 +16,7 @@
                 <th>Paid at</th>
             </tr>
         </thead>
-        <tbody>
-
-        </tbody>
+        <tbody></tbody>
     </table>
 </div>
 
@@ -63,8 +61,10 @@
                     <!-- Type -->
                     <div class="form mb-4">
                         <label class="form-label" for="form-charge">Transaction Type</label>
-                        <?php echo form_dropdown("charge_type", charge_type_options(), null, 'id="form-charge" class="form-select text-capitalize"'); ?>
+                        <?php echo form_dropdown("charge_type_id", charge_type_options(), null, 'id="form-charge" class="form-select text-capitalize" onChange="checkUnits(this)"'); ?>
                     </div>
+
+                    <div class="form d-flex gap-4" id="electricity_units"></div>
 
                     <!-- Payment -->
                     <div class="form mb-4">
@@ -73,14 +73,14 @@
                             <div class="col-sm-8">
                                 <input type="number" name="paid" class="form-control" min="0" max="<?php echo $room_rent; ?>">
                             </div>
-                            <div class="col-sm-4 lead"> / <?php echo $room_rent; ?></div>
+                            <div class="col-sm-4 lead" data-elect-price> / <?php echo $room_rent; ?></div>
                         </div>
                     </div>
 
                     <!-- Submit button -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-grayish" data-mdb-dismiss="modal">Discard</button>
-                        <button type="submit" class="btn btn-primary" >Save changes</button>
+                        <button id="trans-save-button" type="submit" class="btn btn-primary" >Save changes</button>
                     </div>
                 </form>
             </div>
@@ -90,6 +90,9 @@
 
 <script>
     const historyUrl = "<?php echo url_to('save.history', $id); ?>";
+    const ajaxUrl = '<?php echo url_to("ajax.rooms"); ?>?datatable=rooms&renter_id=<?php echo $id; ?>';
+    const unitCheckUrl = '<?php echo url_to("units.check"); ?>';
+    const unitSaveUrl = '<?php echo url_to("units.save"); ?>';
 </script>
 <script src="<?php echo asset('js/rooms/history.js'); ?>"></script>
 

@@ -41,11 +41,15 @@ $routes->get('/', 'Front\Home::index');
 $routes->get('rooms/(:num)', [Room\Room::class, 'index']);
 $routes->get('rooms/(:num)/info', [Room\Renter::class,'info']);
 
-$routes->get('rooms/(:num)/history', [Room\Room::class,'history']);
+$routes->get('rooms/(:num)/history', [Room\Room::class,'history'], ['as' => 'room.history']);
 $routes->post('rooms/(:num)/history', [Room\Room::class,'savehistory'], ['as' => 'save.history']);
+$routes->match(['get', 'post'], 'ajax/rooms', [Room\Room::class,'ajax'], ['as' => 'ajax.rooms']);
 
 $routes->get('renters/(:num)', [Room\Renter::class, 'info'], ['as' => 'renter_info']);
 $routes->post('renters/(:num)', [Room\Renter::class, 'update'], ['as' => 'renter.info.update']);
+
+$routes->post('units/check', 'Units::check', ['as' => 'units.check']);
+$routes->post('units/save', 'Units::save', ['as' => 'units.save']);
 
 /* ADMIN */
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], static function ($routes) {
