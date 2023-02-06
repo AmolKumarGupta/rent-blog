@@ -8,7 +8,7 @@
             foreach ($rooms as $key=>$r) {
         ?>
         <div class="col-12 col-sm-6 col-xl-3 mb-3">
-            <div class="card text-white bg-<?php echo $arr[$key]; ?> mx-auto" style="max-width: 18rem;">
+            <div class="card text-white bg-<?php echo $arr[$key%4]; ?> mx-auto" style="max-width: 18rem;">
                 <a href="<?php echo base_url('rooms/'.$r['id']); ?>">
                     <div class="card-header text-white hover-underlined text-capitalize">
                         <?php echo esc($r['name']); ?>

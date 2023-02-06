@@ -9,6 +9,10 @@ $(function() {
         ajax: ajaxUrl,
         order: [[5, 'desc']],
     });
+
+    $('#history').DataTable().on( 'draw', function () {
+        $('[data-paid=incomplete]').parent().parent().addClass("text-danger");
+    });
 });
 
 function addHistory(ele, e) {

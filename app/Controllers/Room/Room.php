@@ -61,8 +61,12 @@ class Room extends BaseController
                 "1" => $post['fake_room_rent'],
                 "2" => $post['fake_electric_bill']
             };
+
             unset($post['fake_room_rent']);
             unset($post['fake_electric_bill']);
+            if ($post['created_at'] == "") {
+                unset( $post['created_at'] );
+            }
             
             $rentalHistoryModel = model('RentalHistory');
             if ( $rentalHistoryModel->insert($post, false) )
@@ -100,7 +104,23 @@ class Room extends BaseController
                 'db' => '`rental_history`.`month`', 
                 'dt' => 0 ,
                 "formatter" => function($d, $row) use($months) {
-                    return $months[ $row['month'] ]." ".$row['year'];
+                    $label = "";
+                    $rentalHistoryModel = model('RentalHistory');
+
+                    $query = $rentalHistoryModel->selectSum('paid')
+                                            ->where("room_id", $row['room_id'])
+                                            ->where("renter_id", $row['renter_id'])
+                                            ->where("month", $row['month'])
+                                            ->where("year", $row['year'])
+                                            ->where('charge_type_id', $row['charge_type_id'])
+                                            ->get();
+                    $tmp = $query->getRowArray();
+
+                    if ($tmp['paid'] < $row['total_charges']) {
+                        $label = "data-paid='incomplete'";
+                    }
+
+                    return "<span ".$label.">". $months[ $row['month'] ] ." ". $row['year'] ."</span>";
                 },
                 'field' => 'month'
             ),
@@ -139,6 +159,21 @@ class Room extends BaseController
                 'db' => '`rental_history`.`year`', 
                 'dt' => 6,
                 'field' => 'year'
+            ),
+            array( 
+                'db' => '`rental_history`.`room_id`', 
+                'dt' => 7,
+                'field' => 'room_id'
+            ),
+            array( 
+                'db' => '`rental_history`.`renter_id`', 
+                'dt' => 8,
+                'field' => 'renter_id'
+            ),
+            array( 
+                'db' => '`rental_history`.`charge_type_id`', 
+                'dt' => 9,
+                'field' => 'charge_type_id'
             ),
         );
 

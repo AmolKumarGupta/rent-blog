@@ -77,6 +77,10 @@
                         </div>
                     </div>
 
+                    <div class="form mb-4">
+                        <input type="date" class="form-control" name="created_at">
+                    </div>
+
                     <!-- Submit button -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-grayish" data-mdb-dismiss="modal">Discard</button>

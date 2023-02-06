@@ -25,7 +25,7 @@ class Units extends BaseController
 
             if ($previous_unit) {
                 $diff = (int) $unit['overall_units'] - (int) $previous_unit['overall_units'];
-                $diff = $diff*10;
+                $diff = $diff * RS_PER_KWH;
             }else {
                 $diff = 0;
             }
@@ -59,7 +59,7 @@ class Units extends BaseController
 
         if ($previous_unit) {
             $diff = (int) $post['overall_units'] - (int) $previous_unit['overall_units'];
-            $diff = $diff*10;
+            $diff = $diff * RS_PER_KWH;
         }else {
             $diff = 0;
         }
